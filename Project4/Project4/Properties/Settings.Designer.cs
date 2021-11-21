@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Excel.Properties
+namespace Project4.Properties
 {
 
 
