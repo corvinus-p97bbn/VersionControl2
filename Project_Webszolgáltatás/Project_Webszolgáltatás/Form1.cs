@@ -18,13 +18,17 @@ namespace Project_Webszolgáltatás
     {
 
        
-        new BindingList<RateData> Rates = new BindingList<RateData>();
+        BindingList<RateData> Rates = new BindingList<RateData>();
+        BindingList<string> Currecies = new BindingList<string>();
+        
+
         
          
 
         public Form1()
         {
             InitializeComponent();
+            comboBox1.DataSource = Currecies;
            
             RefreshData();
 
