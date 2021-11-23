@@ -6,13 +6,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Project_FejlesztésiMinták.Entities
+namespace Factory.Entities
 {
-    internal class Car : Toy
+    public class Car : Toy
     {
         protected override void DrawImage(Graphics g)
         {
-            throw new NotImplementedException();
+            Image imageFile = Image.FromFile("Images/car.png");
+            g.DrawImage(imageFile, new Rectangle(0, 0, Width, Height));
         }
     }
 }

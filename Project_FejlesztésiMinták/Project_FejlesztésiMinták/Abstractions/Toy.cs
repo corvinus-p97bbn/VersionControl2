@@ -17,14 +17,11 @@ namespace Factory.Abstractions
             Height = Width;
             Paint += Toy_Paint;
         }
-
         private void Toy_Paint(object sender, PaintEventArgs e)
         {
             DrawImage(e.Graphics);
         }
-
         protected abstract void DrawImage(Graphics g);
-
         public virtual void MoveToy()
         {
             Left += 1;
