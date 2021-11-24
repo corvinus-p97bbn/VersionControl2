@@ -48,18 +48,15 @@ namespace UserMaintenance
             if (writefile.ShowDialog() == DialogResult.OK)
             { 
                 StreamWriter writer = new StreamWriter(writefile.FileName);
-
-                for (int i = 0; i < listBox1.Items.Count; i++)
+                
+                MessageBox.Show(writefile.FileName);
+                foreach (var user in users)
                 {
-                    writer.WriteLine(listBox1.Items[i]);
+                    writer.WriteLine("ID: " + user.ID.ToString() + "; Name: " + user.FullName);
                 }
-               
                 writer.Close();
+                
 
-                //for (int i = 0; i < listBox1; i++)
-                //{
-
-                //}
                     
             }
         }
