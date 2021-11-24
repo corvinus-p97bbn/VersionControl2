@@ -17,9 +17,9 @@ namespace Project4
         RealEstateEntities context = new RealEstateEntities();
         List<Flat> Flats;
 
-        Excel.Application xlApp; // A Microsoft Excel alkalmazás
-        Excel.Workbook xlWB; // A létrehozott munkafüzet
-        Excel.Worksheet xlSheet; // Munkalap a munkafüzeten belül
+        Excel.Application xlApp;
+        Excel.Workbook xlWB;
+        Excel.Worksheet xlSheet;
         public Form1()
         {
             InitializeComponent();
@@ -82,18 +82,24 @@ namespace Project4
 
 
             object[,] values = new object[Flats.Count, headers.Length];
-           
+
             int counter = 0;
             foreach (Flat f in Flats)
             {
                 values[counter, 0] = f.Code;
-                // ...
+                values[counter, 1] = f.Vendor;
+                values[counter, 2] = f.Side;
+                values[counter, 3] = f.District;
+                values[counter, 4] = f.Elevator ? "Van" : "Nincs";
+                values[counter, 5] = f.NumberOfRooms;
+                values[counter, 6] = f.FloorArea;
+                values[counter, 7] = f.Price;
                 values[counter, 8] = "";
                 counter++;
             }
             xlSheet.get_Range(
-           GetCell(2, 1),
-           GetCell(1 + values.GetLength(0), values.GetLength(1))).Value2 = values;
+              GetCell(2, 1),
+              GetCell(1 + values.GetLength(0), values.GetLength(1))).Value2 = values;
 
             Excel.Range headerRange = xlSheet.get_Range(GetCell(1, 1), GetCell(1, headers.Length));
             headerRange.Font.Bold = true;
@@ -103,6 +109,14 @@ namespace Project4
             headerRange.RowHeight = 40;
             headerRange.Interior.Color = Color.LightBlue;
             headerRange.BorderAround2(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThick);
+
+            xlSheet.get_Range(
+            GetCell(2, 1),
+            GetCell(1 + values.GetLength(0), values.GetLength(1))).BorderAround2(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThick);
+            xlSheet.get_Range(GetCell(1, 1), GetCell(1 + values.GetLength(0), 1)).Font.Bold = true;
+            xlSheet.get_Range(GetCell(1, 1), GetCell(1 + values.GetLength(0), 1)).Interior.Color = Color.LightYellow;
+            xlSheet.get_Range(GetCell(1, headers.Length), GetCell(values.GetLength(0), headers.Length)).Interior.Color = Color.LightGreen;
+            xlSheet.get_Range(GetCell(1, headers.Length), GetCell(values.GetLength(0), headers.Length)).NumberFormat = "#.##";
 
 
         }
