@@ -28,6 +28,7 @@ namespace Project_Webszolgáltatás
         public Form1()
         {
             InitializeComponent();
+
             comboBox1.DataSource = Currecies;
            
             RefreshData();
@@ -37,11 +38,11 @@ namespace Project_Webszolgáltatás
         }
         private void GetExchangeRates()
         {
-            var mnbService = new MNBArfolyamServiceSoapClient();
+            var mnbService = new MNBArfolyamServiceSoapClient();      
             
             var request = new GetExchangeRatesRequestBody()
             {
-                currencyNames = comboBox1.SelectedItem.ToString(),
+                currencyNames ="EUR",
                 startDate = dateTimePicker1.Value.ToString(),
                 endDate = dateTimePicker2.Value.ToString()
             };
