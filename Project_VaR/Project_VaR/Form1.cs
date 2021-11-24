@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,6 +19,7 @@ namespace Project_VaR
 
         List<PortfolioItem> Portfolio = new List<PortfolioItem>();
 
+        List<decimal> ear = new List<decimal>();
         public Form1()
         {
             InitializeComponent();
@@ -43,6 +45,7 @@ namespace Project_VaR
                                       select x)
                                         .ToList();
             MessageBox.Show(nyereségekRendezve[nyereségekRendezve.Count() / 5].ToString());
+            ear = nyereségekRendezve;
         }
         private void CreatePortfolio()
         {
@@ -67,14 +70,31 @@ namespace Project_VaR
             return value;
         }
 
+        private void Savetoafile()
+        {
+            SaveFileDialog sf = new SaveFileDialog();
+            sf.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
+            if (sf.ShowDialog() == DialogResult.OK)
+            {
+                using (StreamWriter sw = new StreamWriter(sf.FileName))
+                {
+                    sw.WriteLine("Időszak\tNyereség");
+                    for (int i = 0; i < ear.Count; i++)
+                    {
+                        sw.WriteLine((i + 1).ToString() + "\t" + ear[i]);
+                    }
+                }
+            }
+        }
+
         private void Form1_Load(object sender, EventArgs e)
         {
 
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-
+            Savetoafile();
         }
     }
 }
