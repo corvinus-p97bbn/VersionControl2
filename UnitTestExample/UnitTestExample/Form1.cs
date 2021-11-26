@@ -19,8 +19,8 @@ namespace UnitTestExample
         public bool PasswordCheckPassed
         {
             get { return passwordCheckPassed; }
-            set 
-            { 
+            set
+            {
                 passwordCheckPassed = value;
                 btnRegister.Enabled = passwordCheckPassed;
                 if (passwordCheckPassed)
@@ -34,7 +34,7 @@ namespace UnitTestExample
         {
             InitializeComponent();
             PasswordCheckPassed = true;
-            dgwAccounts.DataSource = _controller.AccountManager.Accounts;         
+            dgwAccounts.DataSource = _controller.AccountManager.Accounts;
         }
 
         private void OnPasswordTextChanged(object sender, EventArgs e)
